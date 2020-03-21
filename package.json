@@ -1,0 +1,11 @@
+{
+  "name": "use-async",
+  "version": "0.1.1",
+  "description": "async await react hook",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aaron Casanova",
+  "license": "ISC"
+}
