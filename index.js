@@ -5,7 +5,7 @@ function useAsync(fn, immediate = true) {
   const [value, setValue] = React.useState(null)
   const [error, setError] = React.useState(null)
 
-  const execute = useCallback(() => {
+  const execute = React.useCallback(() => {
     setPending(true)
     setValue(null)
     setError(null)
@@ -15,7 +15,7 @@ function useAsync(fn, immediate = true) {
       .finally(() => setPending(false))
   }, [fn])
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (immediate) {
       execute()
     }
