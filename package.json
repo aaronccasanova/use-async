@@ -1,8 +1,12 @@
 {
+  "name": "use-async",
   "version": "0.1.0",
-  "license": "MIT",
+  "description": "React hook for handling asynchronous operations",
   "main": "dist/index.js",
+  "module": "dist/use-async.esm.js",
   "typings": "dist/index.d.ts",
+  "author": "Aaron Casanova",
+  "license": "MIT",
   "files": [
     "dist",
     "src"
@@ -29,13 +33,10 @@
   },
   "prettier": {
     "printWidth": 80,
-    "semi": true,
+    "semi": false,
     "singleQuote": true,
-    "trailingComma": "es5"
+    "trailingComma": "all"
   },
-  "name": "use-async",
-  "author": "Aaron Casanova",
-  "module": "dist/use-async.esm.js",
   "devDependencies": {
     "@babel/core": "7.9.0",
     "@storybook/addon-actions": "5.3.17",
