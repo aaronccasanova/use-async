@@ -4,7 +4,14 @@
   "description": "React hook for handling asynchronous operations",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "author": "Aaron Casanova",
+  "author": {
+    "name": "Aaron Casanova",
+    "email": "aaronccasanova@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aaronccasanova/use-async"
+  },
   "license": "MIT",
   "files": [
     "dist",
