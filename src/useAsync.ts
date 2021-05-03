@@ -4,22 +4,27 @@ import React from 'react'
  * State of the `useAsync` hook (Managed by the AsyncReducer).
  */
 export interface State<T> {
-  status: 'idle' | 'pending' | 'rejected' | 'resolved';
-  data: null | T;
-  error: null | Error;
+  status: 'idle' | 'pending' | 'rejected' | 'resolved'
+  data: null | T
+  error: null | Error
 }
 
 /**
- * Action passed to the AsyncReducer.
+ * Action passed to the AsyncReducer.`
  */
 export type Action<T> = Partial<State<T>>
 
-export type AsyncReducer<T> = (prevState: State<T>, action: Action<T>) => State<T>
+export type AsyncReducer<T> = (
+  prevState: State<T>,
+  action: Action<T>,
+) => State<T>
 
 /**
  * Prevents updating state on an unmounted component.
  */
-function useSafeDispatch<T>(dispatch: React.Dispatch<React.ReducerAction<AsyncReducer<T>>>) {
+function useSafeDispatch<T>(
+  dispatch: React.Dispatch<React.ReducerAction<AsyncReducer<T>>>,
+) {
   const mounted = React.useRef(false)
 
   React.useLayoutEffect(() => {
@@ -93,9 +98,9 @@ export function useAsync<T>(initialState: Action<T> = {}) {
         safeSetState({ status: 'pending' })
 
         // eslint-disable-next-line no-shadow
-        const data: T = await (
-          typeof promise === 'function' ? promise() : promise
-        )
+        const data: T = await (typeof promise === 'function'
+          ? promise()
+          : promise)
 
         safeSetState({
           status: 'resolved',
@@ -103,7 +108,8 @@ export function useAsync<T>(initialState: Action<T> = {}) {
         })
 
         return data
-      } catch (error) { // eslint-disable-line no-shadow
+      } catch (error) {
+        // eslint-disable-line no-shadow
         if (error instanceof Error) {
           safeSetState({
             status: 'rejected',
@@ -114,7 +120,7 @@ export function useAsync<T>(initialState: Action<T> = {}) {
         }
 
         const defaultError = new Error(
-          'Failed to perform asynchronous operation.'
+          'Failed to perform asynchronous operation.',
         )
 
         safeSetState({
@@ -140,10 +146,9 @@ export function useAsync<T>(initialState: Action<T> = {}) {
     [safeSetState],
   )
 
-  const reset = React.useCallback(
-    () => safeSetState(initialStateRef.current),
-    [safeSetState],
-  )
+  const reset = React.useCallback(() => safeSetState(initialStateRef.current), [
+    safeSetState,
+  ])
 
   return {
     // Using the same names that react-query uses for convenience
